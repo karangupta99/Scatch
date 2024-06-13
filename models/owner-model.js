@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const ownerSchem = mongoose.Schema({
-    username:{
+    fullname:{
         type:String,
         trim:true,
         minlength: 3 
@@ -15,5 +15,7 @@ const ownerSchem = mongoose.Schema({
 
     picture:String,
 })
+  
+
 
 module.exports = mongoose.model("owner",ownerSchem)
