@@ -29,4 +29,25 @@ module.exports.registeruser = async  function(req,res){
     }
  }
 
+ module.exports.loginuser = async function(req,res){
+try{
+    let{email,password} = req.body;
+
+    let user = await userModel.findOne({email:email})
+    if(!user) return res.send("u register first then login bro")
+    
+        bcrypt.compare(password, user.password, function(err, result) {
+            if(result) {
+                let token = generateToken(user)
+                res.cookie("token",token)
+                res.send("u can login")
+            }
+        });
+}
+catch(err){
+    console.log(err.message)
+}
+ }
+ 
+
  
